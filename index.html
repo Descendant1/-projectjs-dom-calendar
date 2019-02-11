@@ -10,7 +10,25 @@
 <h1>-Projectjs-dom-calendar</h1>
 
 
-<div id="mainHolder">
+<div id="mainHolder"></div>
+
+
+
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class ="close" id="close">&times;</span>
+      <h4 id ="dayTime" >  </h4>
+    </div>
+    <div class="modal-body">
+      <div id="events" ></div>
+    </div>
+    <div class="modal-footer">
+      <h3>&nbsp;&nbsp;&nbsp;&nbsp;</h3>
+    </div>
+  </div>
 
 </div>
 </body>
@@ -55,16 +73,17 @@
         }
         
         .weekdays li {
-          display: inline-block;
+          display: inline-grid;
           width: 13.6%;
           color: #666;
-          text-align: center;
+          padding-left: 7%;
         }
         
         .days {
           padding: 10px 0;
           background: #eee;
           margin: 0;
+          text-align: center;
         }
         
         .days li {
@@ -77,12 +96,91 @@
           color: #777;
         }
         
-        .days li.active {
-          padding: 5px;
+        .weekdays li.liDays.active {
+          padding: 8px;
+          padding-right: 20px;
+          padding-left: 20px;
           background-color: #1abc9c;
+          color: white !important;
+        }
+        .weekdays li.liDays.current {
+          padding: 4px;
+          background-color: #8f076d;
           color: white !important
         }
-        
+        .liDays{
+          text-align: center;
+          justify-content: space-around;
+          
+        }
+        .modal {
+          display: none; /* Hidden by default */
+          position: fixed; /* Stay in place */
+          z-index: 1; /* Sit on top */
+          padding-top: 100px; /* Location of the box */
+          left: 0;
+          top: 0;
+          width: 100%; /* Full width */
+          height: 100%; /* Full height */
+          overflow: auto; /* Enable scroll if needed */
+          background-color: rgb(0,0,0); /* Fallback color */
+          background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+          position: relative;
+          background-color: #fefefe;
+          margin: auto;
+          padding: 0;
+          border: 1px solid #888;
+          width: 80%;
+          box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+          -webkit-animation-name: animatetop;
+          -webkit-animation-duration: 0.4s;
+          animation-name: animatetop;
+          animation-duration: 0.4s
+        }
+
+        /* Add Animation */
+        @-webkit-keyframes animatetop {
+          from {top:-300px; opacity:0} 
+          to {top:0; opacity:1}
+        }
+
+        @keyframes animatetop {
+          from {top:-300px; opacity:0}
+          to {top:0; opacity:1}
+        }
+
+        /* The Close Button */
+        .close {
+          color: white;
+          float: right;
+          font-size: 28px;
+          font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+          color: #000;
+          text-decoration: none;
+          cursor: pointer;
+        }
+
+        .modal-header {
+          padding: 2px 16px;
+          background-color: #5cb85c;
+          color: white;
+        }
+
+        .modal-body {padding: 2px 16px;}
+
+        .modal-footer {
+          padding: 2px 16px;
+          background-color: #5cb85c;
+          color: white;
+        }
         /* Add media queries for smaller screens */
         @media screen and (max-width:720px) {
           .weekdays li, .days li {width: 13.1%;}
@@ -97,7 +195,8 @@
           .weekdays li, .days li {width: 12.2%;}
         }
         </style>
+<script src="Month.js"></script>
 <script src="DOMlib.js"></script>
-<script src="main.js"></script>
+<script src="calendar.js"></script>
 </html>
 
