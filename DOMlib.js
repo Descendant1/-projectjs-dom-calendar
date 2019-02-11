@@ -1,10 +1,15 @@
 class library {
 
     constructor(selector){
-        this.currEl = this.get(selector);
+        if(selector instanceof HTMLElement || selector instanceof Node ){ 
+             this.currEl =  selector  
+        }
+        else{
+            this.currEl = this.get(selector);
+        }
     }
 
-    get = ( selector ) => { 
+    get  ( selector )  { 
 
         if( ! ( typeof selector === 'string' || selector instanceof String ) ){
             return;
@@ -12,41 +17,57 @@ class library {
 
         if( selector[0] === '#' ){
             this.currEl = document.querySelector( selector );
-            return  this.currEl;
+            return this.currEl;    
         }
-
-        return Array.from( document.querySelectorAll( selector ) );
+        this.currEl = Array.from( document.querySelectorAll( selector ) );
+        return this.currEl
     }
 
-    remove = (  ) => {
+    remove  (  ) {
         var el = this.currEl;
         Array.isArray( el ) ? el.map( i => i.remove() ) : el.remove();
         this.currEl= null;
     }
 
-    createElement = ( tagName, props ) => 
+    createElement  ( tagName, props )  
     {
+        //this.currEl = this.setAttrsToElement( document.createElement( tagName ), props);
         return this.setAttrsToElement( document.createElement( tagName ), props);
+        //return this;
     }
 
-    append= ( tagName, props ) => {
+    append ( tagName, props )  {
         if( tagName == undefined || tagName == null ){
             console.log('%c TagName invalid! ', ' color: red');
             return;
         }
-        this.currEl =   Array.isArray( this.currEl ) ? this.currEl.map( i =>  i.appendChild(  this.createElement( tagName, props ) ) )
+        //this.currEl = 
+          Array.isArray( this.currEl ) ? this.currEl.map( i =>  i.appendChild(  this.createElement( tagName, props ) ) )
                             : this.currEl.appendChild( this.createElement( tagName, props ) );
         return this;
     }
 
-    modify = ( props ) => {
+    modify  ( props )  {
         
         Array.isArray( this.currEl ) ? this.currEl.map( i =>  this.setAttrsToElement( i, props ) ) 
                                      : this.setAttrsToElement( this.currEl, props);  
         return this;
     }
 
-    modifyStyles = (  props ) => {
+    addClassToElementClassList(classes){
+        if(classes == undefined || classes == null){
+            return;
+        }
+        Array.isArray(classes) ? classes.map(i=>this.currEl.classList.add( i )) :  this.currEl.classList.add( classes )
+    }
+    elementsClassListHasClass(eclass){
+        if(eclass == undefined || eclass == null){
+            return;
+        }
+        return this.currEl.classList.contains(eclass);
+    }
+
+    modifyStyles (  props )  {
         var   setStylesToElement =( target, props )=>{
             for( var key in props ){
                 target.style[ key ] = props[ key ];
@@ -57,7 +78,7 @@ class library {
                             : setStylesToElement( this.currEl, props);  
     }
 
-    setAttrsToElement =( target, props )=>{
+    setAttrsToElement ( target, props ){
         for( var key in props ){
             if (key =='innerText'){
                 target.innerText = props[key]; 
@@ -74,28 +95,28 @@ class library {
         return target;
     }
 
-    getParent = () => {
+    getParent  ()  {
         this.currEl =  Array.isArray( this.currEl )  ? this.currEl.map( i => i.parentElement ) 
                                                      : this.currEl.parentElement;  
         return this;
     }
-    getNextSibling = () => {
+    getNextSibling  ()  {
         this.currEl =  Array.isArray( this.currEl )  ? this.currEl.map( i => i.nextSibling ) 
                                                      : this.currEl.nextSibling;  
         return this;
     }
-    getPrevSibling = () => {
+    getPrevSibling  ()  {
         this.currEl =  Array.isArray( this.currEl )  ? this.currEl.map( i => i.previousSibling ) 
                                                      : this.currEl.previousSibling;  
         return this;
     }
-    getChildren = () => {
+    getChildren  ()  {
         this.currEl =  Array.isArray( this.currEl )  ? this.currEl.map( i => i.children ) 
                                                      : this.currEl.children;  
         return this;
     }
 
-    setEventHandler = (props) => {
+    setEventHandler  (props)  {
         var setEventToEventHandler = ( target ,props ) => {
             for( var key in props ){
                 target[key] = props[key] ;
