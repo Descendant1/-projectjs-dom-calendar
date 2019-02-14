@@ -15,7 +15,6 @@ class Year {
         return this.months.filter(i=>i.isCurrent == true)[0];
     }
 }
-
 class Month {
     constructor(num, name,numberOfDays, year){
             this.name =  name;
@@ -35,7 +34,7 @@ class Day {
         this.id =  
         this.number = number;
         this.dayNumber =  new Date(mon + '-'+  number  +'-'+ year).getDay();
-          
+        this.UTCDate = new Date(mon + '-'+  number  +'-'+ year);
         switch(this.dayNumber) {
             case 1:
                 this.dayNumberStr = 'Mo'
@@ -58,21 +57,18 @@ class Day {
             case 0:
                 this.dayNumberStr =  'Su'
                 break;
-          }
-
-        this.isCurrent =  number ==  new Date().getDate();
+        }
+        this.isCurrent = ( this.number ==  new Date().getDate() && mon -1 == new Date().getMonth() && year == new Date().getFullYear()); 
+                                
         this.Events =  []
     }
 
 }
 class Event {
-    constructor(name, date, desc){
+    constructor(id,name, date, desc){
+        this.id   =    id;
         this.name =  name;
         this.date =  date;
         this.desc =  desc;
     }
 }
-
-
-
-var currentDay   = new Date().getDay();

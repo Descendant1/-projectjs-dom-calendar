@@ -1,0 +1,247 @@
+* {box-sizing: border-box;}
+ul {list-style-type: none;}
+body {font-family: Verdana, sans-serif;}
+
+.month {
+  padding: 70px 25px;
+  width: 100%;
+  background: #1abc9c;
+  text-align: center;
+}
+
+.month ul {
+  margin: 0;
+  padding: 0;
+}
+
+.month ul li {
+  color: white;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.month .prev {
+  float: left;
+  padding-top: 10px;
+}
+
+.month .next {
+  float: right;
+  padding-top: 10px;
+}
+
+.weekdays {
+  margin: 0;
+  padding: 10px 0;
+  background-color: #ddd;
+}
+
+.weekdays li {
+  display: inline-grid;
+  width: 13.6%;
+  color: #666;
+  padding-left: 6%;
+}
+
+.days {
+  padding: 10px 0;
+  background: #eee;
+  margin: 0;
+  text-align: center;
+}
+
+.days li {
+  list-style-type: none;
+  display: inline-block;
+  width: 13.6%;
+  text-align: center;
+  margin-bottom: 5px;
+  font-size:12px;
+  color: #777;
+}
+
+.weekdays li.liDays.active {
+  padding: 8px;
+  padding-right: 20px;
+  padding-left: 20px;
+  background-color: #1abc9c;
+  color: white !important;
+}
+.weekdays li.liDays.current {
+  padding: 10px;
+  background-color: #8f076d;
+  color: white !important
+}
+.liDays{
+  text-align: center;
+  justify-content: space-around;
+  
+}
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 16px;
+  background-color: #1abc9c;
+  color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #1abc9c;
+  color: white;
+}
+/* Add media queries for smaller screens */
+@media screen and (max-width:720px) {
+  .weekdays li, .days li {width: 13.1%;}
+}
+
+@media screen and (max-width: 420px) {
+  .weekdays li, .days li {width: 12.5%;}
+  .days li .active {padding: 2px;}
+}
+
+@media screen and (max-width: 290px) {
+  .weekdays li, .days li {width: 12.2%;}
+}
+
+  #Some{
+    width: 180px;
+    position: fixed;
+    bottom: 9%;
+    left: 10%;
+    border: 1px solid black;
+    display: none;
+  }
+.inputMonth {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  background: #1abc9c;
+  text-align: center;
+
+}
+
+.inputMonth ul {
+  margin: 0;
+  padding: 0;
+}
+
+.inputMonth ul li {
+  color: white;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.inputMonth .inputPrev {
+  float: left;
+  padding-top: 10px;
+}
+
+.inputMonth .inputNext {
+  float: right;
+  padding-top: 10px;
+}
+
+.inputWeekdays {
+  margin: 0;
+  padding: 10px 0;
+  background-color: #ddd;
+  width: 100%;
+}
+
+.inputWeekdays li {
+  display: inline-grid;
+/* width: 13.6%; */
+color: #666;
+padding-left: 1%;
+}
+
+.days {
+  padding: 10px 0;
+  background: #eee;
+  margin: 0;
+  text-align: center;
+}
+
+.days li {
+  list-style-type: none;
+  display: inline-block;
+  width: 13.6%;
+  text-align: center;
+  margin-bottom: 5px;
+  font-size:12px;
+  color: #777;
+}
+
+.inputWeekdays li.iliDays.active {
+  padding: 1px;
+  background-color: #1abc9c;
+  color: white !important;
+}
+.inputWeekdays li.iliDays.current {
+  padding: 1px;
+  background-color: #8f076d;
+  color: white !important
+}
+.iliDays{
+  text-align: center;
+  justify-content: space-around;
+  
+}

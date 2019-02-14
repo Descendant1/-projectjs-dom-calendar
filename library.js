@@ -4,7 +4,8 @@ class library {
         if(selector instanceof HTMLElement || selector instanceof Node ){ 
              this.currEl =  selector  
         }
-        else{
+
+        else if(( typeof selector === 'string' || selector instanceof String ) ){
             this.currEl = this.get(selector);
         }
     }
@@ -31,9 +32,7 @@ class library {
 
     createElement  ( tagName, props )  
     {
-        //this.currEl = this.setAttrsToElement( document.createElement( tagName ), props);
         return this.setAttrsToElement( document.createElement( tagName ), props);
-        //return this;
     }
 
     append ( tagName, props )  {
@@ -64,7 +63,8 @@ class library {
         if(eclass == undefined || eclass == null){
             return;
         }
-        return this.currEl.classList.contains(eclass);
+        return Array.isArray(this.currEl) ?  this.currEl.filter(i=>i.classList.contains(eclass)) 
+                                          : this.currEl.classList.contains(eclass); 
     }
 
     modifyStyles (  props )  {
@@ -95,22 +95,22 @@ class library {
         return target;
     }
 
-    getParent  ()  {
+    getParentOfElement  ()  {
         this.currEl =  Array.isArray( this.currEl )  ? this.currEl.map( i => i.parentElement ) 
                                                      : this.currEl.parentElement;  
         return this;
     }
-    getNextSibling  ()  {
+    getNextSiblingOfElement  ()  {
         this.currEl =  Array.isArray( this.currEl )  ? this.currEl.map( i => i.nextSibling ) 
                                                      : this.currEl.nextSibling;  
         return this;
     }
-    getPrevSibling  ()  {
+    getPrevSiblingOfElement  ()  {
         this.currEl =  Array.isArray( this.currEl )  ? this.currEl.map( i => i.previousSibling ) 
                                                      : this.currEl.previousSibling;  
         return this;
     }
-    getChildren  ()  {
+    getChildrenOfElement  ()  {
         this.currEl =  Array.isArray( this.currEl )  ? this.currEl.map( i => i.children ) 
                                                      : this.currEl.children;  
         return this;
